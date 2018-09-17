@@ -35,11 +35,11 @@ public class PointP
   /**
    * Constructs a coordinate object, with a type identifier.
    */
-  public PointP(double xOrRho, double yOrTheta)
+  public PointP(double Rho, double Theta)
   {
 
-    this.rho = xOrRho;
-    this.theta = yOrTheta;
+    this.rho = Rho;
+    this.theta = Theta;
     
   }
 	
@@ -97,16 +97,17 @@ public class PointP
    * @param rotation The number of degrees to rotate the point.
    * @return The rotated image of the original point.
    */
-//  public PointCP rotatePoint(double rotation)
-//  {
-//    double radRotation = Math.toRadians(rotation);
-//    double X = getX();
-//    double Y = getY();
-//        
-//    return new PointCP(
-//      (Math.cos(radRotation) * X) - (Math.sin(radRotation) * Y),
-//      (Math.sin(radRotation) * X) + (Math.cos(radRotation) * Y));
-//  }
+  public PointP rotatePoint(double rotation)
+  {
+    double radRotation = Math.toRadians(rotation);
+    double X = getX();
+    double Y = getY();
+  
+    double rotatedX=(Math.cos(radRotation) * X) - (Math.sin(radRotation) * Y);
+    double rotatedY=(Math.sin(radRotation) * X) + (Math.cos(radRotation) * Y);
+  		
+ return new PointP( (Math.sqrt(Math.pow(rotatedX, 2) + Math.pow(rotatedY, 2)))  ,  Math.toDegrees(Math.atan2(rotatedX, rotatedY)) );
+  }
 
   /**
    * Returns information about the coordinates.
