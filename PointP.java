@@ -12,7 +12,7 @@
  * @author Dr Timothy C. Lethbridge
  * @version July 2000
  */
-public class PointP
+public class PointP implements Point
 {
   //Instance variables ************************************************
 
