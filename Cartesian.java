@@ -12,7 +12,7 @@
  * @author Dr Timothy C. Lethbridge
  * @version July 2000
  */
-public class PointC
+public class Cartesian  implements Point
 {
   //Instance variables ************************************************
 
@@ -32,7 +32,7 @@ public class PointC
   /**
    * Constructs a coordinate object, with a type identifier.
    */
-  public PointC(double xOrRho, double yOrTheta)
+  public Cartesian(double xOrRho, double yOrTheta)
   {
     this.x = xOrRho;
     this.y = yOrTheta;
@@ -62,20 +62,39 @@ public class PointC
       return Math.toDegrees(Math.atan2(y, x));
   }
   
+    /**
+   * Rotates the specified point by the specified number of degrees.
+   * Not required until E2.30
+   *
+   * @param point The point to rotate
+   * @param rotation The number of degrees to rotate the point.
+   * @return The rotated image of the original point.
+   */
+  public Cartesian rotatePoint(double rotation)
+  {
+    double newAngle = Math.atan(y/x) + Math.toRadians( rotation);
+
+    double r = getDistance(this);
+
+    double rotatedX= r*Math.cos(newAngle);
+    double rotatedY= r*Math.sin(newAngle);
+      
+    return new Cartesian( rotatedX  ,  rotatedY );
+  }
   /**
-   * Calculates the distance in between two points using the Pythagorean
+   * Calculates the distance between this point and the other point using the Pythagorean
    * theorem  (C ^ 2 = A ^ 2 + B ^ 2). Not needed until E2.30.
    *
    * @param pointA The first point.
    * @param pointB The second point.
    * @return The distance between the two points.
    */
-  public double getDistance(PointC pointB)
+  public double getDistance(Point other)
   {
     // Obtain differences in X and Y, sign is not important as these values
     // will be squared later.
-    double deltaX = getX() - pointB.getX();
-    double deltaY = getY() - pointB.getY();
+    double deltaX = other.getX() - x;
+    double deltaY = other.getY() - y;
     
     return Math.sqrt((Math.pow(deltaX, 2) + Math.pow(deltaY, 2)));
   }
