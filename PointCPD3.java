@@ -72,14 +72,13 @@ public class PointCPD3
    */
   public PointCPD3 rotatePoint(double rotation)
   {
-    double newAngle = Math.atan(y/x) + Math.toRadians( rotation);
-
-    double r = getDistance(this);
-
-    double rotatedX= r*Math.cos(newAngle);
-    double rotatedY= r*Math.sin(newAngle);
-      
-    return new PointCPD3( rotatedX  ,  rotatedY );
+    double radRotation = Math.toRadians(rotation);
+    double X = getX();
+    double Y = getY();
+        
+    return new PointCPD3(
+      (Math.cos(radRotation) * x) - (Math.sin(radRotation) * y),
+      (Math.sin(radRotation) * x) + (Math.cos(radRotation) * y));
   }
   /**
    * Calculates the distance between this point and the other point using the Pythagorean
@@ -89,7 +88,7 @@ public class PointCPD3
    * @param pointB The second point.
    * @return The distance between the two points.
    */
-  public double getDistance(Point other)
+  public double getDistance(PointCPD3 other)
   {
     // Obtain differences in X and Y, sign is not important as these values
     // will be squared later.
