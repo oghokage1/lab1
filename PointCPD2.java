@@ -79,7 +79,7 @@ public class PointCPD2
    * @param pointB The second point.
    * @return The distance between the two points.
    */
-  public double getDistance(Point pointB)
+  public double getDistance(PointCPD2 pointB)
   {
     // Obtain differences in X and Y, sign is not important as these values
     // will be squared later.
