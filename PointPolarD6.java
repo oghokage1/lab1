@@ -12,7 +12,7 @@
  * @author Dr Timothy C. Lethbridge
  * @version July 2000
  */
-public class PointPolar implements Point
+public class PointPolarD6 implements PointD6
 {
   //Instance variables ************************************************
 
@@ -35,7 +35,7 @@ public class PointPolar implements Point
   /**
    * Constructs a coordinate object, with a type identifier.
    */
-  public PointPolar(double Rho, double Theta)
+  public PointPolarD6(double Rho, double Theta)
   {
 
     this.rho = Rho;
@@ -79,7 +79,7 @@ public class PointPolar implements Point
    * @param pointB The second point.
    * @return The distance between the two points.
    */
-  public double getDistance(Point pointB)
+  public double getDistance(PointD6 pointB)
   {
     // Obtain differences in X and Y, sign is not important as these values
     // will be squared later.
@@ -97,7 +97,7 @@ public class PointPolar implements Point
    * @param rotation The number of degrees to rotate the point.
    * @return The rotated image of the original point.
    */
-  public PointPolar rotatePoint(double rotation)
+  public PointPolarD6 rotatePoint(double rotation)
   {
     double radRotation = Math.toRadians(rotation);
     double X = getX();
@@ -106,7 +106,7 @@ public class PointPolar implements Point
     double rotatedX=(Math.cos(radRotation) * X) - (Math.sin(radRotation) * Y);
     double rotatedY=(Math.sin(radRotation) * X) + (Math.cos(radRotation) * Y);
   		
- return new PointPolar( (Math.sqrt(Math.pow(rotatedX, 2) + Math.pow(rotatedY, 2)))  ,  Math.toDegrees(Math.atan2(rotatedX, rotatedY)) );
+ return new PointPolarD6( (Math.sqrt(Math.pow(rotatedX, 2) + Math.pow(rotatedY, 2)))  ,  Math.toDegrees(Math.atan2(rotatedX, rotatedY)) );
   }
 
   /**

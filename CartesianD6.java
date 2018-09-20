@@ -3,16 +3,16 @@
 // license found at www.lloseng.com 
 
 /**
- * This class contains instances of coordinates in either polar or
- * cartesian format.  It also provides the utilities to convert
- * them into the other type. It is not an optimal design, it is used
+ * This class contains instances of coordinates in
+ * cartesian format.  It also provides the utilities to 
+ * get the other type. It is not an optimal design, it is used
  * only to illustrate some design issues.
  *
  * @author Fran&ccedil;ois B&eacute;langer
  * @author Dr Timothy C. Lethbridge
  * @version July 2000
  */
-public class Cartesian  implements Point
+public class CartesianD6  implements PointD6
 {
   //Instance variables ************************************************
 
@@ -32,7 +32,7 @@ public class Cartesian  implements Point
   /**
    * Constructs a coordinate object, with a type identifier.
    */
-  public Cartesian(double xOrRho, double yOrTheta)
+  public CartesianD6(double xOrRho, double yOrTheta)
   {
     this.x = xOrRho;
     this.y = yOrTheta;
@@ -70,7 +70,7 @@ public class Cartesian  implements Point
    * @param rotation The number of degrees to rotate the point.
    * @return The rotated image of the original point.
    */
-  public Cartesian rotatePoint(double rotation)
+  public CartesianD6 rotatePoint(double rotation)
   {
     double newAngle = Math.atan(y/x) + Math.toRadians( rotation);
 
@@ -79,7 +79,7 @@ public class Cartesian  implements Point
     double rotatedX= r*Math.cos(newAngle);
     double rotatedY= r*Math.sin(newAngle);
       
-    return new Cartesian( rotatedX  ,  rotatedY );
+    return new CartesianD6( rotatedX  ,  rotatedY );
   }
   /**
    * Calculates the distance between this point and the other point using the Pythagorean
@@ -89,7 +89,7 @@ public class Cartesian  implements Point
    * @param pointB The second point.
    * @return The distance between the two points.
    */
-  public double getDistance(Point other)
+  public double getDistance(PointD6 other)
   {
     // Obtain differences in X and Y, sign is not important as these values
     // will be squared later.
