@@ -118,7 +118,7 @@ public class PointTest{
 	public static class testVersionThree{
 		
 		public static void test(Random rng){
-			System.out.println("Testing Version 6...");
+			System.out.println("Testing Version 3...");
 
 			PointCPD3[] points = new PointCPD3[testingSize]; // carries the points we will be testing
 			PointCPD3[] otherPoints = new PointCPD3[testingSize]; // holds other points for testing the distance function
@@ -206,10 +206,17 @@ public class PointTest{
 			PointD6[] otherPoints = new PointD6[testingSize]; // holds other points for testing the distance function
 			double[] testAngles = new double[testingSize]; //holds random angles to test the rotate function
 
-			//loop to initialize the above arrays with random points
-			for(int i = 0; i<testingSize; i++){
-				points[i] = new CartesianD6(rng.nextDouble()*100 , rng.nextDouble()*360); 
-				otherPoints[i] = new CartesianD6(rng.nextDouble()*100 , rng.nextDouble()*360);
+			//loop to initialize half the above arrays with random carteisna points
+			for(int i = 0; i<testingSize/2; i++){
+				points[i] = new CartesianD6(rng.nextDouble()*100 , rng.nextDouble()*100); 
+				otherPoints[i] = new CartesianD6(rng.nextDouble()*100 , rng.nextDouble()*100);
+				testAngles[i] = rng.nextDouble()*360; //holds random angles to test the rotate function
+			}
+
+			//loop to initialize the above arrays with random polar points
+			for(int i = testingSize/2; i< testingSize; i++){  // populates the other half of the array
+				points[i] = new PointPolarD6(rng.nextDouble()*100 , rng.nextDouble()*360); 
+				otherPoints[i] = new PointPolarD6(rng.nextDouble()*100 , rng.nextDouble()*360);
 				testAngles[i] = rng.nextDouble()*360; //holds random angles to test the rotate function
 			}
 
@@ -226,14 +233,14 @@ public class PointTest{
 				points[i].getX();
 			}
 			elapsed = System.nanoTime()- start;
-			System.out.println("time to getX of "+ points.length +" points: "+ nanoToMilliSeconds(elapsed) +" nanoseconds.");
+			System.out.println("time to getX of "+ points.length +" points: "+ nanoToMilliSeconds(elapsed) +" milliseconds.");
 
 			start = System.nanoTime();
 			for(int i = 0; i<testingSize; i++){
 				points[i].getY();
 			}
 			elapsed = System.nanoTime()- start;
-			System.out.println("time to getY of "+testingSize +" points: "+ nanoToMilliSeconds(elapsed) +" nanoseconds.");
+			System.out.println("time to getY of "+testingSize +" points: "+ nanoToMilliSeconds(elapsed) +" milliseconds.");
 
 			start = System.nanoTime();
 			for(int i = 0; i<testingSize; i++){
