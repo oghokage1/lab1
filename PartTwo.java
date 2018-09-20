@@ -1,10 +1,10 @@
 import java.util.*;
 
 
-public class PartThree{
+public class PartTwo{
 	public static void main(String[] args){
 
-		int size = 20000000;
+		int size = 80000000;
 		Random rng = new Random();
 		ArrayList<Integer> alist = new ArrayList<Integer>();
 		Vector<Integer> vector = new Vector<Integer>();
