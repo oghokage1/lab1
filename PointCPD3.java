@@ -3,8 +3,7 @@
 // license found at www.lloseng.com 
 
 /**
- * This class contains instances of coordinates in either polar or
- * cartesian format.  It also provides the utilities to convert
+ * This class contains instances of coordinates in  cartesian format.  It also provides the utilities to convert
  * them into the other type. It is not an optimal design, it is used
  * only to illustrate some design issues.
  *
@@ -61,6 +60,22 @@ public class PointCPD3
   {
       return Math.toDegrees(Math.atan2(y, x));
   }
+
+  /**
+   * Converts Cartesian coordinates to Polar coordinates.
+   */
+  public PointCPD2 convertStorageToPolar()
+  {
+    return new PointCPD2(this.getRho() ,this.getTheta());
+  }
+	
+  /**
+   * Converts Polar coordinates to Cartesian coordinates.
+   */
+  public void convertStorageToCartesian()
+  {
+    //already cartesian
+  }
   
     /**
    * Rotates the specified point by the specified number of degrees.
@@ -105,6 +120,6 @@ public class PointCPD3
    */
   public String toString()
   {
-    return "(" + x + ", " + y + ")";
+    return "Cartesian Point: (" + x + ", " + y + ")\n Computed Polar coord: ["+getRho()+ ", " +getTheta() +"]";
   }
 }

@@ -68,7 +68,23 @@ public class PointCPD2
       return theta;
   }
   
+  
+  /**
+   * Converts Cartesian coordinates to Polar coordinates.
+   */
+  public void convertStorageToPolar()
+  {
+   //already polar
+  }
 	
+  /**
+   * Converts Polar coordinates to Cartesian coordinates.
+   */
+  public PointCPD3 convertStorageToCartesian()
+  {
+   
+    return new PointCPD3(this.getX(), this.getY());
+  }
 	
 
   /**
@@ -116,6 +132,6 @@ public class PointCPD2
    */
   public String toString()
   {
-    return "Stored as Polar \n" + "Cartesian  (" + getX() + "," + getY() + ")" + " \nPolar [" + getRho() + "," + getTheta() + "]" + "\n";
+    return ("Stored as Polar:" + " [" + getRho() + "," + getTheta() + "]" + "\n" + "Computed Cartesian coords [" + getX() + "," + getY() + "]");
   }
 }

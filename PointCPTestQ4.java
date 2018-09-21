@@ -3,6 +3,7 @@
 // license found at www.lloseng.com 
 
 import java.io.*;
+import java.util.Random;
 
 /**
  * EDITED BY AISHA KHALID AND YUSRA ADINOYI
@@ -77,7 +78,7 @@ public class PointCPTestQ4
           Double.valueOf(info[2]).doubleValue());
           design=2;
         }
-        if(info[0]==3){
+        else if(info[0]==3){
            pointCartesian = new PointCPD3( Double.valueOf(info[1]).doubleValue(), 
           Double.valueOf(info[2]).doubleValue());
           design=3;
@@ -96,21 +97,31 @@ public class PointCPTestQ4
       }
     }
 
+    Random rand=new Random();
+    int angle= rand.nextInt(360);
+
     if(design==2){
       System.out.println("\nYou entered:\n" + pointPolar);
-      PointCPD2 otherPoint=pointPolar.rotatePoint(45);
-      System.out.println("After rotating\n"+otherPoint);
-      // System.out.println("Distance between random point and the original: " +pointPolar.getDistance(otherPoint));
+      PointCPD2 otherPoint=pointPolar.rotatePoint(angle);
+      System.out.println("\nAfter rotating "+ angle + " degrees \n" + otherPoint);
+      System.out.println("\nDistance between rotated point and the original: " +pointPolar.getDistance(otherPoint));
+      System.out.println("\n After converting orignal to Cartesian: " + pointPolar.convertStorageToCartesian());
     }
     if(design==3){
       System.out.println("\nYou entered:\n" + pointCartesian);
-      PointCPD3 otherPoint=pointCartesian.rotatePoint(45);
-      System.out.println("After rotating\n"+otherPoint);
+      PointCPD3 otherPoint=pointCartesian.rotatePoint(angle);
+      System.out.println("\nAfter rotating "+ angle + " degrees \n"+otherPoint);
+      System.out.println("\nDistance between rotated point and the original: " +pointCartesian.getDistance(otherPoint));
+      System.out.println("\n After converting orignal to Polar: " + pointCartesian.convertStorageToPolar());
+    
     }
     if(design==6){
       System.out.println("\nYou entered:\n" + pointD6);
-      PointD6 otherPoint=pointD6.rotatePoint(45);
-      System.out.println("After rotating\n"+otherPoint);
+      PointD6 otherPoint=pointD6.rotatePoint(angle);
+      System.out.println("\nAfter rotating "+ angle + " degrees \n"+otherPoint);
+      System.out.println("\nDistance between rotated point and the original: " +pointD6.getDistance(otherPoint));
+      System.out.println("\n After converting orignal to Cartesian: " + pointD6.convertStorageToCartesian());
+    
     }
   }
 
@@ -145,7 +156,7 @@ public class PointCPTestQ4
         // Prompt the user
         if (i == 0) // First argument - type of coordinates
         {
-          System.out.print("Enter the number for the design you want to test: 2, 3 or 6");
+          System.out.print("Enter the number for the design you want to test: 2, 3 or 6: ");
         }
         else // Second and third arguments
         {

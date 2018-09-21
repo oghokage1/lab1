@@ -6,4 +6,6 @@ public interface PointD6{
 	public double getTheta();
 	public PointD6 rotatePoint(double r);
 	public double getDistance(PointD6 a);
+	public PointD6 convertStorageToCartesian();
+	public PointD6 convertStorageToPolar();
 }

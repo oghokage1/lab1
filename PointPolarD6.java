@@ -68,6 +68,22 @@ public class PointPolarD6 implements PointD6
       return theta;
   }
   
+   /**
+   * Converts Cartesian coordinates to Polar coordinates.
+   */
+  public PointD6 convertStorageToPolar()
+  {
+   return this; //already polar
+  }
+	
+  /**
+   * Converts Polar coordinates to Cartesian coordinates.
+   */
+  public PointD6 convertStorageToCartesian()
+  {
+   
+    return new CartesianD6(this.getX(), this.getY());
+  }
 	
 	
 
@@ -116,6 +132,6 @@ public class PointPolarD6 implements PointD6
    */
   public String toString()
   {
-    return "Stored as Polar \n" + "Cartesian  (" + getX() + "," + getY() + ")" + " \nPolar [" + getRho() + "," + getTheta() + "]" + "\n";
+    return ("Stored as Polar:" + " [" + getRho() + "," + getTheta() + "]" + "\n" + "Computed Cartesian coords [" + getX() + "," + getY() + "]");
   }
 }

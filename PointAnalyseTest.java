@@ -1,7 +1,7 @@
  
 import java.util.Random;
 
-public class PointTest{
+public class PointAnalyseTest{
 
 
 	public static final int testingSize = 5000000;
@@ -47,6 +47,7 @@ public class PointTest{
 			testGetters(points);
 			testDistance(points, otherPoints);
 			testRotate(points, testAngles);
+			testConversion(points);
 
 		}
 
@@ -111,6 +112,18 @@ public class PointTest{
 			System.out.println("time to do rotate on "+ testingSize +" points: "+ nanoToMilliSeconds(elapsed)+" milliseconds.");	
 		}
 
+		public static void testConversion(PointCPD2[] points){
+			long start, elapsed;
+
+			start = System.nanoTime();
+			for(int i = 0; i<testingSize; i++){
+				points[i].convertStorageToCartesian();
+			}
+			elapsed = System.nanoTime() - start;
+
+			System.out.println("time to do conversion on "+ testingSize +" points: "+ nanoToMilliSeconds(elapsed)+" milliseconds.");
+		}
+
 	}
 
 
@@ -134,6 +147,7 @@ public class PointTest{
 			testGetters(points);
 			testDistance(points, otherPoints);
 			testRotate(points, testAngles);
+			testConversion(points);
 		}
 
 		public static void testGetters(PointCPD3[] points){
@@ -193,6 +207,19 @@ public class PointTest{
 
 			System.out.println("time to do rotate on "+ testingSize +" points: "+ nanoToMilliSeconds(elapsed)+" milliseconds.");	
 		}
+
+		public static void testConversion(PointCPD3[] points){
+			long start, elapsed;
+
+			start = System.nanoTime();
+			for(int i = 0; i<testingSize; i++){
+				points[i].convertStorageToPolar();
+			}
+			elapsed = System.nanoTime() - start;
+
+			System.out.println("time to do conversion on "+ testingSize +" points: "+ nanoToMilliSeconds(elapsed)+" milliseconds.");
+		}
+
 		
 	}
 
@@ -223,6 +250,7 @@ public class PointTest{
 			testGetters(points);
 			testDistance(points, otherPoints);
 			testRotate(points, testAngles);
+			testConversion(points);
 		}
 
 		public static void testGetters(PointD6[] points){
@@ -281,7 +309,25 @@ public class PointTest{
 			elapsed = System.nanoTime() - start;
 
 			System.out.println("time to do rotate on "+ testingSize +" points: "+ nanoToMilliSeconds(elapsed)+" milliseconds.");	
-		}	
+		}
+		
+		public static void testConversion(PointD6[] points){
+			long start, elapsed;
+
+			start = System.nanoTime();
+			for(int i = 0; i<testingSize/2; i++){
+				points[i].convertStorageToCartesian();
+			}
+
+			for(int i = testingSize; i<testingSize; i++){
+				points[i].convertStorageToCartesian();
+			}
+
+			elapsed = System.nanoTime() - start;
+
+			System.out.println("time to do conversion to opposite type on "+ testingSize +" points: "+ nanoToMilliSeconds(elapsed)+" milliseconds.");
+		}
+
 	}
 
 

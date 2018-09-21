@@ -61,6 +61,22 @@ public class CartesianD6  implements PointD6
   {
       return Math.toDegrees(Math.atan2(y, x));
   }
+
+  /**
+   * Converts Cartesian coordinates to Polar coordinates.
+   */
+  public PointPolarD6 convertStorageToPolar()
+  {
+    return new PointPolarD6(this.getRho() ,this.getTheta());
+  }
+	
+  /**
+   * Converts Polar coordinates to Cartesian coordinates.
+   */
+  public PointD6 convertStorageToCartesian()
+  {
+    return this; //already cartesian
+  }
   
     /**
    * Rotates the specified point by the specified number of degrees.
@@ -106,6 +122,6 @@ public class CartesianD6  implements PointD6
    */
   public String toString()
   {
-    return "(" + x + ", " + y + ")";
+    return "Cartesian Point: (" + x + ", " + y + ") \n Computed Polar coord: ["+getRho()+getTheta() +"]";
   }
 }
