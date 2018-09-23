@@ -34,7 +34,8 @@ public class PointCPTestQ4
   public static void main(String[] args)
   {
 
-    PointD6 pointD6=null;
+    PointD6 pointD6Polar=null;
+    PointD6 pointD6Cartesian=null;
     PointCPD2 pointPolar=null;
     PointCPD3 pointCartesian=null;
     int design;
@@ -47,18 +48,21 @@ public class PointCPTestQ4
     try
     {
       if(args[0]=="2"){
-         pointPolar = new PointCPD2( Double.valueOf(args[1]).doubleValue(), 
+         pointPolar = new PointCPD2( 'P', Double.valueOf(args[1]).doubleValue(), 
         Double.valueOf(args[2]).doubleValue());
         design=2;
       }
       if(args[0]=="3"){
-         pointCartesian = new PointCPD3( Double.valueOf(args[1]).doubleValue(), 
+         pointCartesian = new PointCPD3( 'C', Double.valueOf(args[1]).doubleValue(), 
         Double.valueOf(args[2]).doubleValue());
         design=3;
       }
       else{
-         pointD6=new PointPolarD6(Double.valueOf(args[1]).doubleValue(), 
+        // making both types of PointD6
+         pointD6Polar=new PointPolarD6('P', Double.valueOf(args[1]).doubleValue(), 
         Double.valueOf(args[2]).doubleValue());
+        pointD6Cartesian=new CartesianD6('P', Double.valueOf(args[1]).doubleValue(), 
+          Double.valueOf(args[2]).doubleValue());
         design=6;
       }
      
@@ -74,17 +78,20 @@ public class PointCPTestQ4
       {
         double[] info= getInput();
         if(info[0]==2){
-           pointPolar = new PointCPD2( Double.valueOf(info[1]).doubleValue(), 
+           pointPolar = new PointCPD2( 'P', Double.valueOf(info[1]).doubleValue(), 
           Double.valueOf(info[2]).doubleValue());
           design=2;
         }
         else if(info[0]==3){
-           pointCartesian = new PointCPD3( Double.valueOf(info[1]).doubleValue(), 
+           pointCartesian = new PointCPD3('P', Double.valueOf(info[1]).doubleValue(), 
           Double.valueOf(info[2]).doubleValue());
           design=3;
         }
         else{
-           pointD6=new PointPolarD6(Double.valueOf(info[1]).doubleValue(), 
+          // making both types of PointD6
+           pointD6Polar=new PointPolarD6('P', Double.valueOf(info[1]).doubleValue(), 
+          Double.valueOf(info[2]).doubleValue());
+          pointD6Cartesian=new CartesianD6('P', Double.valueOf(info[1]).doubleValue(), 
           Double.valueOf(info[2]).doubleValue());
           design=6;
         }
@@ -116,11 +123,11 @@ public class PointCPTestQ4
     
     }
     if(design==6){
-      System.out.println("\nYou entered:\n" + pointD6);
-      PointD6 otherPoint=pointD6.rotatePoint(angle);
+      System.out.println("\nYou entered:\n" + pointD6Polar);
+      PointD6 otherPoint=pointD6Polar.rotatePoint(angle);
       System.out.println("\nAfter rotating "+ angle + " degrees \n"+otherPoint);
-      System.out.println("\nDistance between rotated point and the original: " +pointD6.getDistance(otherPoint));
-      System.out.println("\n After converting orignal to Cartesian: " + pointD6.convertStorageToCartesian());
+      System.out.println("\nDistance between rotated point and the original: " +pointD6Polar.getDistance(otherPoint));
+      System.out.println("\n After converting orignal to Cartesian: " + pointD6Polar.convertStorageToCartesian());
     
     }
   }

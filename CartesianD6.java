@@ -32,10 +32,21 @@ public class CartesianD6  implements PointD6
   /**
    * Constructs a coordinate object, with a type identifier.
    */
-  public CartesianD6(double xOrRho, double yOrTheta)
+  public CartesianD6(char coord, double xOrRho, double yOrTheta)
   {
-    this.x = xOrRho;
-    this.y = yOrTheta;
+
+    if(coord=='C'){
+      this.x = xOrRho;
+      this.y = yOrTheta;
+    }
+    else if (coord=='P'){
+      this.x=(Math.cos(Math.toRadians(yOrTheta)) * xOrRho);
+      this.y=(Math.sin(Math.toRadians(yOrTheta)) * yOrTheta);
+    }
+    else{
+      throw new IllegalStateException();
+    }
+
   }
 	
   
@@ -67,7 +78,7 @@ public class CartesianD6  implements PointD6
    */
   public PointPolarD6 convertStorageToPolar()
   {
-    return new PointPolarD6(this.getRho() ,this.getTheta());
+    return new PointPolarD6('P', this.getRho() ,this.getTheta());
   }
 	
   /**
@@ -95,7 +106,7 @@ public class CartesianD6  implements PointD6
     double rotatedX= r*Math.cos(newAngle);
     double rotatedY= r*Math.sin(newAngle);
       
-    return new CartesianD6( rotatedX  ,  rotatedY );
+    return new CartesianD6( 'C', rotatedX  ,  rotatedY );
   }
   /**
    * Calculates the distance between this point and the other point using the Pythagorean

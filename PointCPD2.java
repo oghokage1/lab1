@@ -35,11 +35,21 @@ public class PointCPD2
   /**
    * Constructs a coordinate object, with a type identifier.
    */
-  public PointCPD2(double Rho, double Theta)
+  public PointCPD2(char coord, double xOrRho, double yOrTheta)
   {
-
-    this.rho = Rho;
-    this.theta = Theta;
+    
+    if(coord=='P'){
+      this.rho = xOrRho;
+      this.theta = yOrTheta;
+    }
+    else if(coord=='C'){
+      this.rho=(Math.sqrt(Math.pow(xOrRho, 2) + Math.pow(yOrTheta, 2)));
+      this.theta=Math.toDegrees(Math.atan2(yOrTheta, xOrRho));
+    }
+    else{
+      throw new IllegalArgumentException();
+    }
+    
     
   }
 	
@@ -83,7 +93,7 @@ public class PointCPD2
   public PointCPD3 convertStorageToCartesian()
   {
    
-    return new PointCPD3(this.getX(), this.getY());
+    return new PointCPD3('C', this.getX(), this.getY());
   }
 	
 
@@ -122,7 +132,7 @@ public class PointCPD2
     double rotatedX=(Math.cos(radRotation) * X) - (Math.sin(radRotation) * Y);
     double rotatedY=(Math.sin(radRotation) * X) + (Math.cos(radRotation) * Y);
   		
- return new PointCPD2( (Math.sqrt(Math.pow(rotatedX, 2) + Math.pow(rotatedY, 2)))  ,  Math.toDegrees(Math.atan2(rotatedX, rotatedY)) );
+ return new PointCPD2('P', (Math.sqrt(Math.pow(rotatedX, 2) + Math.pow(rotatedY, 2)))  ,  Math.toDegrees(Math.atan2(rotatedX, rotatedY)) );
   }
 
   /**

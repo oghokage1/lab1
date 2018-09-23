@@ -39,8 +39,8 @@ public class PointAnalyseTest{
 
 			//loop to initialize the above arrays with random points
 			for(int i = 0; i<testingSize; i++){
-				points[i] = new PointCPD2(rng.nextDouble()*100 , rng.nextDouble()*360); 
-				otherPoints[i] = new PointCPD2(rng.nextDouble()*100 , rng.nextDouble()*360);
+				points[i] = new PointCPD2('P', rng.nextDouble()*100 , rng.nextDouble()*360); 
+				otherPoints[i] = new PointCPD2('P', rng.nextDouble()*100 , rng.nextDouble()*360);
 				testAngles[i] = rng.nextDouble()*360;
 			}
 
@@ -139,8 +139,8 @@ public class PointAnalyseTest{
 
 			//loop to initialize the above arrays with random points
 			for(int i = 0; i<testingSize; i++){
-				points[i] = new PointCPD3(rng.nextDouble()*100 , rng.nextDouble()*100); 
-				otherPoints[i] = new PointCPD3(rng.nextDouble()*100 , rng.nextDouble()*100);
+				points[i] = new PointCPD3('C', rng.nextDouble()*100 , rng.nextDouble()*100); 
+				otherPoints[i] = new PointCPD3('C', rng.nextDouble()*100 , rng.nextDouble()*100);
 				testAngles[i] = rng.nextDouble()*360; //holds random angles to test the rotate function
 			}
 
@@ -235,15 +235,15 @@ public class PointAnalyseTest{
 
 			//loop to initialize half the above arrays with random carteisna points
 			for(int i = 0; i<testingSize/2; i++){
-				points[i] = new CartesianD6(rng.nextDouble()*100 , rng.nextDouble()*100); 
-				otherPoints[i] = new CartesianD6(rng.nextDouble()*100 , rng.nextDouble()*100);
+				points[i] = new CartesianD6('C', rng.nextDouble()*100 , rng.nextDouble()*100); 
+				otherPoints[i] = new CartesianD6('C', rng.nextDouble()*100 , rng.nextDouble()*100);
 				testAngles[i] = rng.nextDouble()*360; //holds random angles to test the rotate function
 			}
 
 			//loop to initialize the above arrays with random polar points
 			for(int i = testingSize/2; i< testingSize; i++){  // populates the other half of the array
-				points[i] = new PointPolarD6(rng.nextDouble()*100 , rng.nextDouble()*360); 
-				otherPoints[i] = new PointPolarD6(rng.nextDouble()*100 , rng.nextDouble()*360);
+				points[i] = new PointPolarD6('P', rng.nextDouble()*100 , rng.nextDouble()*360); 
+				otherPoints[i] = new PointPolarD6('P', rng.nextDouble()*100 , rng.nextDouble()*360);
 				testAngles[i] = rng.nextDouble()*360; //holds random angles to test the rotate function
 			}
 

@@ -35,11 +35,21 @@ public class PointPolarD6 implements PointD6
   /**
    * Constructs a coordinate object, with a type identifier.
    */
-  public PointPolarD6(double Rho, double Theta)
+  public PointPolarD6(char coord, double xOrRho, double yOrTheta)
   {
-
-    this.rho = Rho;
-    this.theta = Theta;
+    
+    if(coord=='P'){
+      this.rho = xOrRho;
+      this.theta = yOrTheta;
+    }
+    else if(coord=='C'){
+      this.rho=(Math.sqrt(Math.pow(xOrRho, 2) + Math.pow(yOrTheta, 2)));
+      this.theta=Math.toDegrees(Math.atan2(yOrTheta, xOrRho));
+    }
+    else{
+      throw new IllegalArgumentException();
+    }
+    
     
   }
 	
@@ -82,7 +92,7 @@ public class PointPolarD6 implements PointD6
   public PointD6 convertStorageToCartesian()
   {
    
-    return new CartesianD6(this.getX(), this.getY());
+    return new CartesianD6('C', this.getX(), this.getY());
   }
 	
 	
@@ -122,7 +132,7 @@ public class PointPolarD6 implements PointD6
     double rotatedX=(Math.cos(radRotation) * X) - (Math.sin(radRotation) * Y);
     double rotatedY=(Math.sin(radRotation) * X) + (Math.cos(radRotation) * Y);
   		
- return new PointPolarD6( (Math.sqrt(Math.pow(rotatedX, 2) + Math.pow(rotatedY, 2)))  ,  Math.toDegrees(Math.atan2(rotatedX, rotatedY)) );
+ return new PointPolarD6('P', (Math.sqrt(Math.pow(rotatedX, 2) + Math.pow(rotatedY, 2)))  ,  Math.toDegrees(Math.atan2(rotatedX, rotatedY)) );
   }
 
   /**

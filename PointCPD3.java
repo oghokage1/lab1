@@ -31,10 +31,21 @@ public class PointCPD3
   /**
    * Constructs a coordinate object, with a type identifier.
    */
-  public PointCPD3(double xOrRho, double yOrTheta)
+  public PointCPD3(char coord, double xOrRho, double yOrTheta)
   {
-    this.x = xOrRho;
-    this.y = yOrTheta;
+
+    if(coord=='C'){
+      this.x = xOrRho;
+      this.y = yOrTheta;
+    }
+    else if (coord=='P'){
+      this.x=(Math.cos(Math.toRadians(yOrTheta)) * xOrRho);
+      this.y=(Math.sin(Math.toRadians(yOrTheta)) * yOrTheta);
+    }
+    else{
+      throw new IllegalStateException();
+    }
+
   }
 	
   
@@ -66,7 +77,7 @@ public class PointCPD3
    */
   public PointCPD2 convertStorageToPolar()
   {
-    return new PointCPD2(this.getRho() ,this.getTheta());
+    return new PointCPD2('P', this.getRho() ,this.getTheta());
   }
 	
   /**
@@ -91,7 +102,7 @@ public class PointCPD3
     double X = getX();
     double Y = getY();
         
-    return new PointCPD3(
+    return new PointCPD3('C',
       (Math.cos(radRotation) * x) - (Math.sin(radRotation) * y),
       (Math.sin(radRotation) * x) + (Math.cos(radRotation) * y));
   }
